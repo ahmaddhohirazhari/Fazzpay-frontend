@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "components/header";
+import Footer from "components/footer";
+import Aside from "components/aside";
 import Head from "next/head";
 
 export default function Layout(props) {
@@ -14,9 +16,18 @@ export default function Layout(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {/* <Aside /> */}
-      <main>{props.children}</main>
-      {/* <Footer /> */}
+      <div className="container">
+        <div className="row ">
+          <div className="col-4 me-2">
+            <Aside />
+          </div>
+          <div className="col-7">
+            <main>{props.children}</main>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
     </>
   );
 }
