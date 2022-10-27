@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-export default function Login() {
+export default function SignUp() {
   const router = useRouter();
   const [form, setForm] = useState({});
 
@@ -49,7 +49,7 @@ export default function Login() {
         </div>
         <div className="phone d-flex">
           <div className="phone-1">
-            <Image src="/phone.png" width={400} height={500} alt="background" />
+            <Image src="/phone.png" width={400} height={400} alt="background" />
           </div>
         </div>
         <div className="text-banner">
@@ -74,17 +74,31 @@ export default function Login() {
             that for you!
           </p>
           <input
+            type="text"
+            className="input my-2"
+            name="firstName"
+            placeholder="Enter your firstname"
+            onChange={handleChangeText}
+          />
+          <input
+            type="text"
+            className="input my-2"
+            name="lastName"
+            placeholder="Enter your lastname"
+            onChange={handleChangeText}
+          />
+          <input
             type="email"
             className="input my-2"
             name="email"
-            placeholder="Input email ..."
+            placeholder="Enter your e-mail"
             onChange={handleChangeText}
           />
           <input
             type="password"
             className="input my-2"
             name="password"
-            placeholder="Input password ..."
+            placeholder="Create your password"
             onChange={handleChangeText}
           />
           <button

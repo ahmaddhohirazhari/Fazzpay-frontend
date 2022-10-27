@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axiosClient from "utils/axios";
+import PinInput from "react-pin-input";
 
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-export default function Login() {
+export default function UpdatePin() {
   const router = useRouter();
   const [form, setForm] = useState({});
 
@@ -49,7 +50,7 @@ export default function Login() {
         </div>
         <div className="phone d-flex">
           <div className="phone-1">
-            <Image src="/phone.png" width={400} height={500} alt="background" />
+            <Image src="/phone.png" width={400} height={400} alt="background" />
           </div>
         </div>
         <div className="text-banner">
@@ -65,41 +66,26 @@ export default function Login() {
       <div className="form ">
         <form className=" p-5">
           <p className="text-1">
-            Start Accessing Banking Needs With All Devices and All Platforms
-            With 30.000+ Users
+            Secure Your Account, Your Wallet, and Your Data With 6 Digits PIN
+            That You Created Yourself.
           </p>
           <p className="text-2">
             Transfering money is eassier than ever, you can access FazzPay
             wherever you are. Desktop, laptop, mobile phone? we cover all of
             that for you!
           </p>
-          <input
-            type="email"
-            className="input my-2"
-            name="email"
-            placeholder="Input email ..."
-            onChange={handleChangeText}
-          />
-          <input
-            type="password"
-            className="input my-2"
-            name="password"
-            placeholder="Input password ..."
-            onChange={handleChangeText}
-          />
+          <div className="pin-input">
+            <PinInput type="numeric" length={6} inputMode="number" />
+          </div>
+
           <button
             type="button"
             className="button-login "
             onClick={handleSubmit}
           >
-            Submit
+            Confirm
           </button>
         </form>
-        <div className="text-question">
-          <p>
-            Don’t have an account? Let’s <a href="#">Sign Up</a>{" "}
-          </p>
-        </div>
       </div>
     </div>
   );
