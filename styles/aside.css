@@ -1,0 +1,9 @@
+/* Aside */
+.aside {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  margin-top: 50px;
+  width: 270px;
+  height: 678px;
+}

@@ -7,46 +7,27 @@ import { FiLogOut } from "react-icons/Fi";
 
 export default function Aside() {
   return (
-    <div className="container bg-white">
-      <div className="row_dashboard row">
-        <div className="col d-flex">
-          <div className="img_dashboard">
-            <MdOutlineDashboardCustomize />
-          </div>
-          <div className="icon_dashboard mt-1">Dashboard</div>
-        </div>
+    <div className="container aside  ">
+      <div className="icon_dashboard ">
+        <MdOutlineDashboardCustomize className=" me-3 " /> Dashboard
       </div>
-      <div className="row_transfer row">
-        <div className="col d-flex">
-          <div className="img_transfer">
-            <AiOutlineArrowUp />
-          </div>
-          <div className="icon_transfer mt-1">Transfer</div>
-        </div>
+      <div className="icon_transfer">
+        <AiOutlineArrowUp className="icon_transfer me-3" />
+        Transfer
       </div>
-      <div className="row_topup row">
-        <div className="col d-flex">
-          <div className="img_topup">
-            <AiOutlinePlus />
-          </div>
-          <div className="icon_topup mt-1">Topup</div>
-        </div>
+      <div className="icon_topup mt-1">
+        <AiOutlinePlus />
+        Topup
       </div>
-      <div className="row_topup row">
-        <div className="col  d-flex">
-          <div className="img_topup">
-            <AiOutlineUser />
-          </div>
-          <div className="icon_profile mt-1">Profile</div>
-        </div>
+
+      <div className="icon_profile mt-1">
+        <AiOutlineUser />
+        Profile
       </div>
-      <div className="row_logout row">
-        <div className="col d-flex">
-          <div className="img_transfer">
-            <FiLogOut />
-          </div>
-          <div className="icon_logout mt-1">Logout</div>
-        </div>
+
+      <div className="icon_logout mt-1">
+        <FiLogOut />
+        Logout
       </div>
     </div>
   );

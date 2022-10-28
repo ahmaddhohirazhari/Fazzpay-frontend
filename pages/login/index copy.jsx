@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-// import axiosClient from "utils/axios";
-import { useDispatch } from "react-redux/es/exports";
 import { login } from "stores/action/auth";
-import { getDataUserById } from "stores/action/user";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import { useDispatch } from "react-redux/es/exports";
+import { getDataUserById } from "stores/action/user";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Login() {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+import Image from "next/image";
 
-  const handleSubmit = () => {
+export default function Login() {
+  const router = useRouter();
+  const [form, setForm] = useState({});
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
     dispatch(login(form))
       .then((response) => {
         toast.success(response.value.data.msg, {
@@ -31,21 +28,10 @@ export default function Login() {
         }, 3000);
       })
       .catch((error) => {
-        console.log(error);
-        toast.error(error.response.value.data.msg, {
+        toast.error(error.response.data.msg, {
           position: toast.POSITION.TOP_CENTER,
         });
       });
-    // try {
-    //   const result = await axiosClient.post("/auth/login", form);
-    //   Cookies.set("token", result.data.data.token);
-    //   Cookies.set("userId", result.data.data.id);
-    //   //   proses kondisi pengecekan pin jika ada akan diarahkan ke home jika tidak ada akan diarahkan ke create pin
-    //   router.push("/home");
-    //   console.log(result);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const handleChangeText = (e) => {
@@ -75,7 +61,7 @@ export default function Login() {
         </div>
         <div className="phone d-flex">
           <div className="phone-1">
-            <Image src="/phone.png" width={400} height={500} alt="background" />
+            <Image src="/phone.png" width={400} height={400} alt="background" />
           </div>
         </div>
         <div className="text-banner">
@@ -113,12 +99,8 @@ export default function Login() {
             placeholder="Input password ..."
             onChange={handleChangeText}
           />
-          <button
-            type="button"
-            className="button-login "
-            onClick={handleSubmit}
-          >
-            Submit
+          <button type="button" className="button-login " onClick={handleLogin}>
+            Login
             <ToastContainer />
           </button>
         </form>
