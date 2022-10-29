@@ -105,6 +105,14 @@
   text-align: center;
   margin-left: -70px;
 }
+.success {
+  background: #1ec15f;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-left:50px;
+  padding: 10px;
+}
 @media (max-width: 600px) {
   .banner {
     display: none;

@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import "styles/home.css";
 import "styles/login.css";
 import "styles/header.css";
-import "styles/aside.css";
+import "styles/components.css";
 
 import "../styles/globals.css";
 import "styles/home.css";

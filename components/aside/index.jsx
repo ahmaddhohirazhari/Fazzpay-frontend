@@ -1,33 +1,74 @@
-import React from "react";
-import { MdOutlineDashboardCustomize } from "react-icons/Md";
-import { AiOutlineArrowUp } from "react-icons/Ai";
-import { AiOutlineUser } from "react-icons/Ai";
-import { AiOutlinePlus } from "react-icons/Ai";
-import { FiLogOut } from "react-icons/Fi";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { logoutRedux } from "../../stores/actions/auth";
 
-export default function Aside() {
+export default function Navbar() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const [selectedMenu, setMenu] = useState(router.pathname);
+  const [isLoading, setIsLoading] = useState(false);
+  const menus = [
+    { name: "Dashboard", icon: "grid", destination: "/dashboard" },
+    { name: "Transfer", icon: "arrow-up", destination: "/transfer" },
+    { name: "Topup", icon: "plus-lg", destination: "/topUp" },
+    { name: "History", icon: "clock-history", destination: "/history" },
+    { name: "Profile", icon: "person", destination: "/profile" },
+  ];
+
+  const handleClickMenu = (menu) => {
+    setMenu(menu.destination);
+    router.push(menu.destination);
+  };
+
+  const handleLogout = async () => {
+    try {
+      setIsLoading(true);
+      await dispatch(logoutRedux());
+      Cookies.remove("token");
+      localStorage.clear();
+      setIsLoading(false);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="container aside  ">
-      <div className="icon_dashboard ">
-        <MdOutlineDashboardCustomize className=" me-3 " /> Dashboard
+    <div className=" aside  shadow py-3 d-flex flex-column justify-content-between">
+      <div>
+        {menus.map((menu) => (
+          <button
+            className={`btn btn-navbar py-1 my-2 ${
+              selectedMenu === menu.destination ? "btn-navbar--selected" : ""
+            }`}
+            onClick={() => handleClickMenu(menu)}
+            key={menu.name}
+            data-bs-toggle={menu.name === "Topup" ? "modal" : ""}
+            data-bs-target={menu.name === "Topup" ? "#topupModal" : ""}
+          >
+            <i className={`bi bi-${menu.icon} text-dark me-4`}></i>
+            {menu.name}
+          </button>
+        ))}
       </div>
-      <div className="icon_transfer">
-        <AiOutlineArrowUp className="icon_transfer me-3" />
-        Transfer
-      </div>
-      <div className="icon_topup mt-1">
-        <AiOutlinePlus />
-        Topup
-      </div>
-
-      <div className="icon_profile mt-1">
-        <AiOutlineUser />
-        Profile
-      </div>
-
-      <div className="icon_logout mt-1">
-        <FiLogOut />
-        Logout
+      <div>
+        <button className="btn btn-navbar py-1 my-2" onClick={handleLogout}>
+          {isLoading ? (
+            <div
+              className="spinner-border spinner-border-sm me-4"
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            <i className="bi bi-box-arrow-right text-dark me-4"></i>
+          )}
+          Logout
+        </button>
       </div>
     </div>
   );

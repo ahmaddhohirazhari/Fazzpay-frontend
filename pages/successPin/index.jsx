@@ -11,21 +11,8 @@ export default function UpdatePin() {
   const [form, setForm] = useState({});
   const userId = Cookies.get("userId");
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      pin: e,
-    });
-  };
-
-  const handleSubmit = async () => {
-    try {
-      console.log(form);
-      const result = await axiosClient.patch(`/user/pin/${userId}`, form);
-      alert(result.data.msg);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleNavigate = () => {
+    router.push("/home");
   };
 
   return (
@@ -65,41 +52,22 @@ export default function UpdatePin() {
         </div>
       </div>
       <div className="form ">
+        <div className="success">
+          <Image src="/success.png" width={45} height={45} alt="success" />
+        </div>
         <form className=" p-5">
-          <p className="text-1">
-            Secure Your Account, Your Wallet, and Your Data With 6 Digits PIN
-            That You Created Yourself.
-          </p>
+          <p className="text-1">Your PIN Was Successfully Created</p>
           <p className="text-2">
-            Transfering money is eassier than ever, you can access FazzPay
-            wherever you are. Desktop, laptop, mobile phone? we cover all of
-            that for you!
+            Your PIN was successfully created and you can now access all the
+            features in FazzPay.
           </p>
-          <div className="pin-input">
-            <PinInput
-              length={6}
-              initialValue=""
-              secret
-              onChange={(value, index) => {
-                handleChange(value);
-              }}
-              type="numeric"
-              inputMode="number"
-              style={{ padding: "10px" }}
-              inputStyle={{ borderColor: "red" }}
-              inputFocusStyle={{ borderColor: "blue" }}
-              onComplete={(value, index) => {}}
-              autoSelect={true}
-              regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-            />
-          </div>
 
           <button
             type="button"
-            className="button-login "
-            onClick={handleSubmit}
+            className="button-login bg-primary text-white "
+            onClick={handleNavigate}
           >
-            Confirm
+            Go To Dashboard
           </button>
         </form>
       </div>

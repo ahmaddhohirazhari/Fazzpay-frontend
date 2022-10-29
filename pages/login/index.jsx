@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Login() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(login);
   const router = useRouter();
   const [form, setForm] = useState({});
   const handleChangeText = (e) => {

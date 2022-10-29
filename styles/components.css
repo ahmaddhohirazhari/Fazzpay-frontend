@@ -1,0 +1,46 @@
+/* Aside */
+.aside {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  margin-top: 100px;
+  width: 270px;
+  height: 80%;
+  padding: 15px;
+}
+
+.btn-navbar {
+  width: 100%;
+
+  text-align: start !important;
+  padding-left: 30px !important;
+  border-left: 4px solid transparent !important;
+}
+.btn-navbar:hover,
+.btn-navbar:hover .bi {
+  color: var(--bs-primary) !important;
+}
+.btn-navbar:focus,
+.btn-navbar:active,
+.btn-navbar--selected {
+  color: var(--bs-primary) !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  border-left: 4px solid var(--bs-primary) !important;
+}
+.btn-navbar:focus .bi,
+.btn-navbar:active .bi,
+.btn-navbar--selected .bi {
+  color: var(--bs-primary) !important;
+}
+
+/* Footer */
+.footer {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  background: #6379f4;
+  color: rgba(239, 239, 239, 0.9);
+}

@@ -26,14 +26,19 @@
   height: 20px;
   margin: 10px 5px;
 }
+
+/* Footer */
+footer {
+  margin: auto;
+  background-color: #6379f4;
+}
+
 .footer-text {
   font-family: "Nunito Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 28px;
-  margin: auto;
-  margin-top: 20px;
 
   color: rgba(239, 239, 239, 0.9);
 }

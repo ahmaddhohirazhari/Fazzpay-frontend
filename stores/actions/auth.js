@@ -6,3 +6,9 @@ export const login = (data) => {
     payload: axiosClient.post("/auth/login", data),
   };
 };
+export const logoutRedux = () => {
+  return {
+    type: "LOGOUT",
+    payload: axiosClient.post("/auth/logout"),
+  };
+};

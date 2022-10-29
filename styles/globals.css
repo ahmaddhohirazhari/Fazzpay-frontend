@@ -6,7 +6,15 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
+.main,
+.main-dashboard {
+  margin-top: 50px;
+  background-color: #fafcff;
+  padding-top: 64px;
+  padding-bottom: 40px;
+  min-height: 600px;
+  height: 100vh;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -24,4 +32,62 @@ a {
   /* color: white; */
   /* background: black; */
   /* } */
+}
+@media (max-width: 768px) {
+  .main {
+    padding-bottom: 64px;
+    min-height: auto;
+    height: 100vh;
+  }
+  .main-dashboard {
+    padding-bottom: 64px;
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .balance-row,
+  .stat-history-row {
+    height: auto !important;
+  }
+
+  .notif-modal {
+    top: 150%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 360px;
+    z-index: 3;
+  }
+
+  .auth-card {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .auth-form {
+    height: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-text {
+    font-size: 36px;
+  }
+
+  .feature-section {
+    height: auto;
+    max-height: none;
+  }
+
+  .feature-right-side > span {
+    display: inline-block !important;
+  }
+
+  .profile-menu,
+  .profile-form,
+  .profile-text {
+    width: 100%;
+  }
 }

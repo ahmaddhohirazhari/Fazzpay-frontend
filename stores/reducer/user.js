@@ -112,6 +112,13 @@ const user = (state = initialState, action) => {
         isError: false,
         message: action.payload.response.data.message,
       };
+
+    case "SET_HISTORY_NOTIF": {
+      return {
+        data: action.data,
+      };
+    }
+
     default: {
       return state;
     }

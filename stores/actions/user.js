@@ -29,3 +29,9 @@ export const updateUserImage = (userId, data) => {
     payload: axios.patch(`user/image/${userId}`, data),
   };
 };
+export const History = (data) => {
+  return {
+    type: "SET_HISTORY_NOTIF",
+    data: data,
+  };
+};

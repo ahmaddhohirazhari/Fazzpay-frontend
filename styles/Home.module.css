@@ -128,7 +128,28 @@
   }
 }
 
-/* Aside */
-.aside {
-  border: 1px solid;
+/* Navbar */
+.btn-navbar {
+  width: 100%;
+  border-radius: 0 !important;
+  text-align: start !important;
+  padding-left: 24px !important;
+  border-left: 4px solid transparent !important;
+}
+.btn-navbar:hover,
+.btn-navbar:hover .bi {
+  color: var(--bs-primary) !important;
+}
+.btn-navbar:focus,
+.btn-navbar:active,
+.btn-navbar--selected {
+  color: var(--bs-primary) !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  border-left: 4px solid var(--bs-primary) !important;
+}
+.btn-navbar:focus .bi,
+.btn-navbar:active .bi,
+.btn-navbar--selected .bi {
+  color: var(--bs-primary) !important;
 }
