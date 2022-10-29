@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 // import axiosClient from "utils/axios";
-import { useDispatch } from "react-redux/es/exports";
-import { login } from "stores/action/auth";
-import { getDataUserById } from "stores/action/user";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "stores/actions/auth";
+import { getDataUserById } from "stores/actions/user";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  console.log(login);
   const router = useRouter();
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [form, setForm] = useState({});
+  const handleChangeText = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = () => {
     dispatch(login(form))
@@ -30,26 +33,11 @@ export default function Login() {
           router.push("/home");
         }, 3000);
       })
-      .catch((error) => {
-        console.log(error);
-        toast.error(error.response.value.data.msg, {
+      .catch((error) =>
+        toast.error(error.response.data.msg, {
           position: toast.POSITION.TOP_CENTER,
-        });
-      });
-    // try {
-    //   const result = await axiosClient.post("/auth/login", form);
-    //   Cookies.set("token", result.data.data.token);
-    //   Cookies.set("userId", result.data.data.id);
-    //   //   proses kondisi pengecekan pin jika ada akan diarahkan ke home jika tidak ada akan diarahkan ke create pin
-    //   router.push("/home");
-    //   console.log(result);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
-
-  const handleChangeText = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+        })
+      );
   };
 
   return (
@@ -75,7 +63,7 @@ export default function Login() {
         </div>
         <div className="phone d-flex">
           <div className="phone-1">
-            <Image src="/phone.png" width={400} height={500} alt="background" />
+            <Image src="/phone.png" width={400} height={400} alt="background" />
           </div>
         </div>
         <div className="text-banner">
@@ -115,10 +103,19 @@ export default function Login() {
           />
           <button
             type="button"
-            className="button-login "
+            className="button-login  "
             onClick={handleSubmit}
           >
-            Submit
+            {auth.isLoading ? (
+              <div
+                className="spinner-border spinner-border-sm text-primary"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              "Login"
+            )}
             <ToastContainer />
           </button>
         </form>

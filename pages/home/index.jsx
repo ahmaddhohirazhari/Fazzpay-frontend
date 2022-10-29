@@ -9,7 +9,7 @@ export default function Home(props) {
   return (
     <Layout title="Home">
       <div className="text-center container">
-        <h1>Home Page SSR</h1>
+        <h1>Home</h1>
         <p>{process.env.URL_BACKEND}</p>
         {props.listUser.map((item) => (
           <div className="card my-3" key={item.id}>

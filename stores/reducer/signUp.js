@@ -5,9 +5,9 @@ const initialState = {
   message: "",
 };
 
-const auth = (state = initialState, action) => {
+const signup = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN_PENDING": {
+    case "SIGNUP_PENDING": {
       return {
         ...state,
         data: {},
@@ -16,22 +16,22 @@ const auth = (state = initialState, action) => {
         message: "",
       };
     }
-    case "LOGIN_FULFILLED": {
+    case "SIGNUP_FULFILLED": {
       return {
         ...state,
         data: action.payload.data.data,
         isLoading: false,
         isError: false,
-        message: action.payload.data.msg,
+        message: action.payload.data.message,
       };
     }
-    case "LOGIN_REJECTED": {
+    case "SIGNUP_REJECTED": {
       return {
         ...state,
         data: {},
         isLoading: false,
         isError: true,
-        message: action.payload.response.data.msg,
+        message: action.payload.response.data.message,
       };
     }
     default: {
@@ -40,4 +40,4 @@ const auth = (state = initialState, action) => {
   }
 };
 
-export default auth;
+export default signup;

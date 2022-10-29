@@ -1,25 +1,38 @@
 import React, { useState } from "react";
-import axiosClient from "utils/axios";
-
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { register } from "stores/actions/signUp";
+import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUp() {
+  const dispatch = useDispatch();
+  const signup = useSelector((state) => state.signup);
   const router = useRouter();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const handleSubmit = async () => {
-    try {
-      const result = await axiosClient.post("/auth/login", form);
-      Cookies.set("token", result.data.data.token);
-      Cookies.set("userId", result.data.data.id);
-      //   proses kondisi pengecekan pin jika ada akan diarahkan ke home jika tidak ada akan diarahkan ke create pin
-      router.push("/home");
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSignup = () => {
+    dispatch(register(form))
+      .then((response) => {
+        toast.success(response.value.data.msg, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        setTimeout(() => {
+          router.push("/signUp");
+        }, 3000);
+      })
+      .catch((error) =>
+        toast.error(error.response.data.msg, {
+          position: toast.POSITION.TOP_CENTER,
+        })
+      );
   };
 
   const handleChangeText = (e) => {
@@ -103,10 +116,20 @@ export default function SignUp() {
           />
           <button
             type="button"
-            className="button-login "
-            onClick={handleSubmit}
+            className="button-login  "
+            onClick={handleSignup}
           >
-            Submit
+            {signup.isLoading ? (
+              <div
+                className="spinner-border spinner-border-sm text-primary"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              "Sign Up"
+            )}
+            <ToastContainer />
           </button>
         </form>
         <div className="text-question">

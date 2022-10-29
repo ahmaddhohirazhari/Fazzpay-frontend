@@ -9,22 +9,23 @@ import Image from "next/image";
 export default function UpdatePin() {
   const router = useRouter();
   const [form, setForm] = useState({});
+  const userId = Cookies.get("userId");
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      pin: e,
+    });
+  };
 
   const handleSubmit = async () => {
     try {
-      const result = await axiosClient.post("/auth/login", form);
-      Cookies.set("token", result.data.data.token);
-      Cookies.set("userId", result.data.data.id);
-      //   proses kondisi pengecekan pin jika ada akan diarahkan ke home jika tidak ada akan diarahkan ke create pin
-      router.push("/home");
-      console.log(result);
+      console.log(form);
+      const result = await axiosClient.patch(`/user/pin/${userId}`, form);
+      alert(result.data.msg);
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleChangeText = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   return (
@@ -75,7 +76,22 @@ export default function UpdatePin() {
             that for you!
           </p>
           <div className="pin-input">
-            <PinInput type="numeric" length={6} inputMode="number" />
+            <PinInput
+              length={6}
+              initialValue=""
+              secret
+              onChange={(value, index) => {
+                handleChange(value);
+              }}
+              type="numeric"
+              inputMode="number"
+              style={{ padding: "10px" }}
+              inputStyle={{ borderColor: "red" }}
+              inputFocusStyle={{ borderColor: "blue" }}
+              onComplete={(value, index) => {}}
+              autoSelect={true}
+              regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+            />
           </div>
 
           <button

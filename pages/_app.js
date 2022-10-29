@@ -7,12 +7,11 @@ import "styles/aside.css";
 import "../styles/globals.css";
 import "styles/home.css";
 
+import Script from "next/script";
 import { Provider } from "react-redux";
 import stores from "stores";
 const { store, persistor } = stores;
 import { PersistGate } from "redux-persist/integration/react";
-
-import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   return (
