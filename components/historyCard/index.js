@@ -10,9 +10,9 @@ export default function HistoryCard(props) {
   const { firstName, fullName, type, image, amount, status } = props.data;
 
   return (
-    <div className="bg-white mb-4 row justify-content-between align-items-center">
-      <div className="col-7">
-        <div className="row">
+    <div className="bg-white  row justify-content-between align-items-center ">
+      <div className="col-6 ">
+        <div className="row  ">
           <div className={path === "/dashboard" ? "col-4" : "col-4 col-md-2"}>
             <div className="rounded" style={{ width: "48px", height: "48px" }}>
               <Image
@@ -37,7 +37,7 @@ export default function HistoryCard(props) {
           </div>
         </div>
       </div>
-      <div className="col-5 text-end">
+      <div className="col-6 text-end">
         <p
           className={`fw-bold m-0 ${
             type === "accept" || type === "topup"

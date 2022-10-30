@@ -4,6 +4,7 @@ import "styles/login.css";
 import "styles/header.css";
 import "styles/components.css";
 import "styles/profile.css";
+import "styles/transaction.css";
 
 import Script from "next/script";
 import { Provider } from "react-redux";
