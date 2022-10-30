@@ -6,9 +6,13 @@ import axiosClient from "../../utils/axios";
 import cookies from "next-cookies";
 import currency from "../../utils/currency";
 import date from "../../utils/date";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PinInput from "../../components/pinInput";
 import { useRouter } from "next/router";
+import { checkPin } from "stores/actions/user";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import ReactPaginate from "react-paginate";
 
 export async function getServerSideProps(context) {
@@ -19,7 +23,7 @@ export async function getServerSideProps(context) {
     const search = !params?.search ? "" : params.search;
     const sort = !params?.sort ? "firstName ASC" : params.sort;
     const result = await axiosServer.get(
-      `user?page=${page}&limit=20&search=${search}&sort=${sort}`,
+      `user?page=${page}&limit=5&search=${search}&sort=${sort}`,
       {
         headers: {
           Authorization: `Bearer ${dataCookies.token}`,
@@ -48,6 +52,7 @@ export async function getServerSideProps(context) {
 
 export default function Transfer(props) {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const users = props.data;
   const pagination = props.pagination;
@@ -158,11 +163,14 @@ export default function Transfer(props) {
       setIsLoading(true);
       const fullPin =
         pin.pin1 + pin.pin2 + pin.pin3 + pin.pin4 + pin.pin5 + pin.pin6;
-      await axiosClient.get(`/user/pin?pin=${fullPin}`);
+      const checkPin = await axiosClient.get(`/user/pin/${fullPin}`);
+      alert(checkPin.data.msg);
       const result = await axiosClient.post(
         "/transaction/transfer",
         formTransfer
       );
+      console.log(result);
+      alert(result.data.msg);
       setTransactionId(result.data.data.id);
       setIsLoading(false);
       setIsError(false);
@@ -200,7 +208,7 @@ export default function Transfer(props) {
 
   return (
     <Layout title={"Transfer "}>
-      <div className="main-card transfer bg-white rounded shadow p-3 p-md-4 overflow-hidden position-relative">
+      <div className="main-card  mb-5 transfer bg-white rounded shadow p-3 p-md-4 overflow-hidden position-relative">
         {Object.keys(selectedReceiver).length === 0 ? (
           <div className="d-flex flex-column h-100">
             {/* SELECT RECEIVER */}
@@ -232,7 +240,7 @@ export default function Transfer(props) {
               </select>
             </div>
             <div className="position-relative flex-grow-1">
-              <div className="scrollable-wrapper p-1 position-absolute top-0 bottom-0 start-0 end-0">
+              <div className="scrollable-wrapper p-1  top-0 bottom-0 start-0 end-0">
                 {users.map((user) => (
                   <div
                     className="user-card rounded mb-2"

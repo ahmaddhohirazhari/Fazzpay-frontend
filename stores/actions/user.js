@@ -1,3 +1,4 @@
+import data from "stores";
 import axios from "../../utils/axios";
 
 export const getDataUserById = (id) => {
@@ -40,5 +41,11 @@ export const History = (data) => {
   return {
     type: "SET_HISTORY_NOTIF",
     data: data,
+  };
+};
+export const checkPin = (pin) => {
+  return {
+    type: "CHECK_PIN",
+    data: axios.get(`/user/pin/${pin}`),
   };
 };
