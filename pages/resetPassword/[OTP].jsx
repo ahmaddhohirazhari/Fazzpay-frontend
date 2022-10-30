@@ -1,33 +1,33 @@
 import React, { useState } from "react";
-// import axiosClient from "utils/axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "stores/actions/auth";
-import { getDataUserById } from "stores/actions/user";
-import Cookies from "js-cookie";
+import { resetPassword } from "stores/actions/auth";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Login() {
+export default function Resetpassword() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const router = useRouter();
-  const [form, setForm] = useState({});
+  const { OTP } = router.query;
+  console.log(OTP);
+  const [form, setForm] = useState({
+    keysChangePassword: `${OTP}`,
+    newPassword: "",
+    confirmPassword: "",
+  });
   const handleChangeText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
-    dispatch(login(form))
+    dispatch(resetPassword(form))
       .then((response) => {
         toast.success(response.value.data.msg, {
           position: toast.POSITION.TOP_CENTER,
         });
-        dispatch(getDataUserById(response.value.data.data.id));
-        Cookies.set("token", response.value.data.data.token);
-        Cookies.set("userId", response.value.data.data.id);
         setTimeout(() => {
           router.push("/dashboard");
         }, 3000);
@@ -87,17 +87,17 @@ export default function Login() {
             that for you!
           </p>
           <input
-            type="email"
+            type="password"
             className="input my-2"
-            name="email"
-            placeholder="Input email ..."
+            name="newPassword"
+            placeholder="new password ..."
             onChange={handleChangeText}
           />
           <input
             type="password"
             className="input my-2"
-            name="password"
-            placeholder="Input password ..."
+            name="confirmPassword"
+            placeholder="confirm password ..."
             onChange={handleChangeText}
           />
           <button
@@ -113,7 +113,7 @@ export default function Login() {
                 <span className="visually-hidden">Loading...</span>
               </div>
             ) : (
-              "Login"
+              "Reset Password"
             )}
             <ToastContainer />
           </button>

@@ -3,9 +3,7 @@ import "styles/home.css";
 import "styles/login.css";
 import "styles/header.css";
 import "styles/components.css";
-
-import "../styles/globals.css";
-import "styles/home.css";
+import "styles/profile.css";
 
 import Script from "next/script";
 import { Provider } from "react-redux";

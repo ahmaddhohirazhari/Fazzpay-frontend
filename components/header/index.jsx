@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import imageDefault from "../../public/profile.jpg";
 // import NotifCard from "../NotifCard";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -23,7 +24,7 @@ export default function Header(props) {
               <div className="profile-picture me-3">
                 <Image
                   src={
-                    image ? process.env.URL_CLOUDINARY + image : "/profile.jpg"
+                    image ? process.env.URL_CLOUDINARY + image : imageDefault
                   }
                   alt="profile picture"
                   width={48}

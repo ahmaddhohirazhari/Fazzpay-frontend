@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-// import axiosClient from "utils/axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "stores/actions/auth";
 import { getDataUserById } from "stores/actions/user";
+import { forgotPassword } from "stores/actions/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -14,22 +13,22 @@ export default function Login() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const router = useRouter();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    email: "",
+    linkDirect: "http://localhost:3000/resetPassword/",
+  });
   const handleChangeText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
-    dispatch(login(form))
+    dispatch(forgotPassword(form))
       .then((response) => {
         toast.success(response.value.data.msg, {
           position: toast.POSITION.TOP_CENTER,
         });
-        dispatch(getDataUserById(response.value.data.data.id));
-        Cookies.set("token", response.value.data.data.token);
-        Cookies.set("userId", response.value.data.data.id);
         setTimeout(() => {
-          router.push("/dashboard");
+          router.push("/resetPassword");
         }, 3000);
       })
       .catch((error) =>
@@ -91,13 +90,6 @@ export default function Login() {
             className="input my-2"
             name="email"
             placeholder="Input email ..."
-            onChange={handleChangeText}
-          />
-          <input
-            type="password"
-            className="input my-2"
-            name="password"
-            placeholder="Input password ..."
             onChange={handleChangeText}
           />
           <button

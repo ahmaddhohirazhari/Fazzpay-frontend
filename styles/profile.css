@@ -1,0 +1,25 @@
+.profile {
+  background: white;
+  width: 120%;
+  height: 100%;
+  margin-left: -100px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px !important;
+}
+.button-profile {
+  width: 433px;
+  height: 64px;
+  left: 648px;
+  top: 481px;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+  /* identical to box height, or 175% */
+
+  color: #4d4b57;
+  border: #e5e8ed;
+  background: #e5e8ed !important;
+  border-radius: 10px !important;
+}
