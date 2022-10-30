@@ -14,7 +14,7 @@ export default function Resetpassword() {
   const { OTP } = router.query;
   console.log(OTP);
   const [form, setForm] = useState({
-    keysChangePassword: `${OTP}`,
+    keysChangePassword: OTP,
     newPassword: "",
     confirmPassword: "",
   });
@@ -22,9 +22,12 @@ export default function Resetpassword() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  console.log(form);
+
   const handleSubmit = () => {
     dispatch(resetPassword(form))
       .then((response) => {
+        console.log(form);
         toast.success(response.value.data.msg, {
           position: toast.POSITION.TOP_CENTER,
         });

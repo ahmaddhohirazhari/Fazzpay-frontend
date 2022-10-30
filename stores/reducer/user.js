@@ -1,6 +1,7 @@
 const initialState = {
   data: {},
   allData: {},
+  dataDashboard: {},
   pageInfo: {},
   isLoading: false,
   isError: false,
@@ -111,6 +112,32 @@ const user = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         message: action.payload.response.data.message,
+      };
+    case "GET_DATA_DASHBOARD_BY_ID_PENDING":
+      return {
+        ...state,
+        dataDashboard: {},
+        isLoading: true,
+        isError: false,
+        message: "",
+      };
+
+    case "GET_DATA_DASHBOARD_BY_ID_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload.data.data,
+        message: action.payload.data.msg,
+      };
+
+    case "GET_DATA_DASHBOARD_BY_ID_REJECTED":
+      return {
+        ...state,
+        dataDashboard: {},
+        isLoading: false,
+        isError: true,
+        message: action.payload.response.data.msg,
       };
 
     case "SET_HISTORY_NOTIF": {

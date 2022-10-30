@@ -26,7 +26,7 @@ export default function Profile() {
   const profileMenus = [
     {
       name: "Personal Information",
-      action: () => handleMenu("/profile/personal-info"),
+      action: () => handleMenu("/profile/personal-information"),
       icon: "arrow-right",
     },
     {
