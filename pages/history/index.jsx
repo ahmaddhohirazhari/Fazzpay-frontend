@@ -9,9 +9,11 @@ import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   try {
+    const params = context.query;
+    const page = !params?.page ? 1 : params.page;
     const dataCookies = cookies(context);
     const historyDashboard = await axiosServer.get(
-      `/transaction/history?page=1&limit=4`,
+      `/transaction/history?page=${page}&limit=5&filter=MONTH`,
       {
         headers: {
           Authorization: `Bearer ${dataCookies.token}`,
@@ -63,25 +65,25 @@ export default function History(props) {
             </div>
           ))}
         </div>
-      </div>
-      <div className="d-flex justify-content-center">
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          breakLabel={"..."}
-          pageCount={pagination.totalPage}
-          onPageChange={handlePagination}
-          containerClassName={"pagination mb-0 mt-3"}
-          pageClassName={"page-item px-1"}
-          pageLinkClassName={"page-link rounded"}
-          previousClassName={"page-item visually-hidden"}
-          previousLinkClassName={"page-link"}
-          nextClassName={"page-item visually-hidden"}
-          nextLinkClassName={"page-link"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active"}
-          activeLinkClassName={"text-white shadow"}
-        />
+        <div className="d-flex justify-content-center">
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            breakLabel={"..."}
+            pageCount={pagination.totalPage}
+            onPageChange={handlePagination}
+            containerClassName={"pagination mb-0 mt-3"}
+            pageClassName={"page-item px-1"}
+            pageLinkClassName={"page-link rounded"}
+            previousClassName={"page-item visually-hidden"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item visually-hidden"}
+            nextLinkClassName={"page-link"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+            activeLinkClassName={"text-white shadow"}
+          />
+        </div>
       </div>
     </Layout>
   );
