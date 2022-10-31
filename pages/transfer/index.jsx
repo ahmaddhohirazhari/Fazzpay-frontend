@@ -9,8 +9,8 @@ import date from "../../utils/date";
 import { useSelector, useDispatch } from "react-redux";
 import PinInput from "../../components/pinInput";
 import { useRouter } from "next/router";
-import { checkPin } from "stores/actions/user";
-import { ToastContainer, toast } from "react-toastify";
+// import { checkPin } from "stores/actions/user";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import ReactPaginate from "react-paginate";

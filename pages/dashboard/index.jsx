@@ -132,7 +132,7 @@ export default function Dashboard(props) {
   };
 
   return (
-    <Layout title={"Dashboard | FazzPay"}>
+    <Layout title={"Dashboard"}>
       <div
         className="row balance-row "
         style={{
