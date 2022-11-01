@@ -1,15 +1,19 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
 import Layout from "../../layout/banner";
 import axios from "../../utils/axios";
-import PinInput from "../../components/pinInput";
 import { useSelector } from "react-redux";
+import PinInput from "../../components/pinInput";
 import { useRouter } from "next/router";
 
 export default function createPIN() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
 
   const userId = useSelector((state) => state.user.data.id);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [pin, setPin] = useState({
     pin1: "",
     pin2: "",
