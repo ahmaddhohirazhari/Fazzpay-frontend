@@ -25,7 +25,7 @@ export default function ResetPassword() {
 
   useEffect(() => {
     setFormNewPassword({ ...formNewPassword, keysChangePassword: OTP });
-  }, [OTP]);
+  }, [OTP, formNewPassword]);
 
   const handleChangeForm = (e) => {
     const { name, value } = e.target;
