@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import Layout from "../../layout/banner";
 import axios from "../../utils/axios";
