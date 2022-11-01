@@ -25,7 +25,7 @@ export default function PrsonalInformation() {
 
   return (
     <Layout title={"Personal Information"}>
-      <div className="container personal-information  shadow p-4 position-relative">
+      <div className="container personal-information  rounded shadow p-4 position-relative h-100">
         <div className="d-flex align-items-center mb-4 mb-md-3">
           <button
             className="btn px-1 py-0 me-2 button-update-profile"
@@ -41,7 +41,7 @@ export default function PrsonalInformation() {
         </p>
         {personalInfos.map((info, index) => (
           <div
-            className="rounded shadow-sm p-3 mb-2 d-flex justify-content-between align-items-center"
+            className="rounded shadow-sm p-3 mb-1 d-flex justify-content-between align-items-center"
             key={index}
           >
             <div>
@@ -72,7 +72,7 @@ export default function PrsonalInformation() {
           </div>
           {noTelp ? (
             <Link href="/profile/update-phone-number">
-              <a className="fs-7 fw-semibold text-primary">Edit</a>
+              <a className="fs-7 fw-semibold text-primary">Manage</a>
             </Link>
           ) : null}
         </div>

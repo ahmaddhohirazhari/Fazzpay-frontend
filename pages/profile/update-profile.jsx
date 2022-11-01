@@ -59,10 +59,7 @@ export default function UpdateProfile() {
 
   return (
     <Layout title={"Update Profile"}>
-      <div
-        className="bg-white rounded shadow d-flex flex-column p-4 h-100"
-        style={{ marginTop: "100px" }}
-      >
+      <div className="bg-white rounded shadow d-flex flex-column p-4 h-100">
         <div className="d-flex align-items-center mb-3">
           <button className="btn px-1 py-0 me-2" onClick={() => router.back()}>
             <i className="bi bi-chevron-left"></i>

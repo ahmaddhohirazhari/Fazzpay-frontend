@@ -13,7 +13,7 @@ export default function Navbar() {
   const menus = [
     { name: "Dashboard", icon: "grid", destination: "/dashboard" },
     { name: "Transfer", icon: "arrow-up", destination: "/transfer" },
-    { name: "Topup", icon: "plus-lg", destination: "/topUp" },
+    { name: "Topup", icon: "plus-lg", destination: "#" },
     { name: "History", icon: "clock-history", destination: "/history" },
     { name: "Profile", icon: "person", destination: "/profile" },
   ];
@@ -38,7 +38,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className=" aside  shadow py-3 d-flex flex-column justify-content-between">
+    <div className="bg-white rounded shadow py-3 d-flex flex-column justify-content-between h-100">
       <div>
         {menus.map((menu) => (
           <button

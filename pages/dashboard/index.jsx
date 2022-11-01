@@ -12,6 +12,7 @@ import cookies from "next-cookies";
 import Cookies from "js-cookie";
 import axiosServer from "../../utils/axiosServer";
 import axiosClient from "../../utils/axios";
+import Modal from "../../components/ModalTopUp";
 
 import { Bar } from "react-chartjs-2";
 
@@ -133,16 +134,7 @@ export default function Dashboard(props) {
 
   return (
     <Layout title={"Dashboard"}>
-      <div
-        className="row balance-row "
-        style={{
-          height: "29%",
-          width: "800px",
-          marginTop: "100px",
-          marginBottom: "20px",
-          marginLeft: "-100px",
-        }}
-      >
+      <div className="row balance-row" style={{ height: "29%" }}>
         <div className="col-12 h-100">
           <div
             className="rounded shadow bg-primary px-4 py-3 d-flex justify-content-between align-items-center mb-3 mb-md-0"
@@ -160,17 +152,14 @@ export default function Dashboard(props) {
             <div className="d-none d-md-flex flex-column justify-content-center align-items-stretch">
               <button
                 type="button"
-                style={{ background: "#6379F4" }}
-                className="btn btn-light  d-block border text-start text-white px-4 mb-2"
+                className="btn btn-light dashboard__btn-white d-block border text-start px-4 mb-2"
                 onClick={() => router.push("/transfer")}
               >
-                <i className="bi bi-arrow-up text-white me-2"></i>
-                Transfer
+                <i className="bi bi-arrow-up text-white me-2"></i>Transfer
               </button>
               <button
                 type="button"
-                style={{ background: "#6379F4" }}
-                className="btn btn-light dashboard__btn-white d-block border text-start text-white px-4"
+                className="btn btn-light dashboard__btn-white d-block border text-start px-4"
                 data-bs-toggle="modal"
                 data-bs-target="#topupModal"
               >
@@ -201,19 +190,11 @@ export default function Dashboard(props) {
           </div>
         </div>
       </div>
-      <div
-        className="row stat-history-row"
-        style={{
-          height: "71%",
-          padding: "auto",
-          width: "800px",
-          marginLeft: "-100px",
-          marginBottom: "100px",
-        }}
-      >
+
+      <div className="row stat-history-row">
         <div className="col-md-7 h-100 order-2 order-md-1">
-          <div className="bg-white rounded shadow px-4 py-3 h-100">
-            <div className="row mb-3">
+          <div className="bg-white rounded shadow px-4 py-3 ">
+            <div className="row ">
               <div className="col-6 px-3">
                 <p className="fs-5 text-success mb-1">
                   <i className="bi bi-arrow-down"></i>

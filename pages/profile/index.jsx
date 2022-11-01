@@ -31,12 +31,12 @@ export default function Profile() {
     },
     {
       name: "Change Password",
-      action: () => handleMenu("/profile/change-password"),
+      action: () => handleMenu("/profile/update-password"),
       icon: "arrow-right",
     },
     {
       name: "Change PIN",
-      action: () => handleMenu("/profile/change-pin"),
+      action: () => handleMenu("/profile/update-pin"),
       icon: "arrow-right",
     },
     { name: "Logout", action: () => handleLogout(), icon: "box-arrow-right" },
@@ -118,16 +118,13 @@ export default function Profile() {
 
   return (
     <Layout title={"Profile | FazzPay"}>
-      <div
-        className="profile rounded shadow p-4 p-md-5 h-100 d-flex flex-column justify-content-center align-items-center position-relative"
-        style={{ marginTop: "100px" }}
-      >
+      <div className="bg-white rounded shadow p-4 p-md-5 h-100 d-flex flex-column justify-content-center align-items-center position-relative">
         <div
           className="d-inline-block mb-2"
           style={{ width: "56px", height: "56px", borderRadius: "10px" }}
         >
           <Image
-            src={image ? process.env.URL_CLOUDINARY + image : "/profile.jpg"}
+            src={image ? process.env.URL_CLOUDINARY + image : blankProfile}
             alt="profile picture"
             width={56}
             height={56}
@@ -147,7 +144,7 @@ export default function Profile() {
         <p className="opacity-75 mb-4">{noTelp}</p>
         {profileMenus.map((menu, index) => (
           <button
-            className="button-profile  py-2 mb-2  d-flex justify-content-between align-items-center"
+            className="profile-menu btn px-3 py-2 mb-2 rounded bg-secondary bg-opacity-25 d-flex justify-content-between align-items-center"
             key={index}
             onClick={menu.action}
           >
@@ -195,7 +192,7 @@ export default function Profile() {
                         ? preview
                         : image
                         ? process.env.URL_CLOUDINARY + image
-                        : "/profile.jpg"
+                        : blankProfile
                     }
                     alt="profile image preview"
                     width={120}

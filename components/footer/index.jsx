@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className=" footer container-fluid fixed-bottom d-none d-md-block">
+    <div className="container-fluid bg-primary fixed-bottom d-none d-md-block">
       <div className="container-lg py-2 d-flex justify-content-between">
         <div>
           <span className="text-white fw-semibold">

@@ -1,37 +1,132 @@
-import React from "react";
-import Header from "components/header";
-import Footer from "components/footer";
-import Aside from "components/aside";
+import React, { useState } from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
 import Head from "next/head";
+import Navbar from "../components/aside";
+import axios from "../utils/axios";
+import { useDispatch } from "react-redux";
+import BottomBar from "../components/ButtomBar";
+import Cookies from "js-cookie";
+import { getDataUserById } from "stores/actions/user";
+import { useRouter } from "next/router";
 
 export default function Layout(props) {
+  const dispatch = useDispatch();
+  const userId = Cookies.get("userId");
+  const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isNotifShown, setIsNotifShown] = useState(false);
+  const [formTopup, setFormTopup] = useState({
+    amount: "",
+  });
+
+  const handleChangeTopupForm = (e) => {
+    setFormTopup({ ...formTopup, amount: e.target.value });
+  };
+
+  const handleTopupSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      setIsLoading(true);
+      const resultTopup = await axios.post("/transaction/top-up", formTopup);
+      dispatch(getDataUserById(userId));
+      window.open(resultTopup.data.data.redirectUrl);
+      setIsLoading(false);
+      setFormTopup({ amount: "" });
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Head>
-        <title>FazzPay App || {props.title}</title>
-        <meta
-          name="description"
-          content="Check out iPhone 12 XR Pro and iPhone 12 Pro Max. Visit your local store and for expert advice."
-        />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-        ></link>
+        <title>{props.title}</title>
       </Head>
-      <Header />
-      <div className="container">
-        <div className="row ">
-          <div className="col-4 me-2">
-            <Aside />
+      <Header isNotifShown={isNotifShown} setIsNotifShown={setIsNotifShown} />
+      <main
+        className={router.pathname === "/dashboard" ? "main-dashboard" : "main"}
+        onClick={() => setIsNotifShown(false)}
+      >
+        <div className="container-lg py-4 h-100">
+          <div className="row h-100">
+            <div className="col-3 d-none d-md-block h-100">
+              <Navbar />
+            </div>
+            <div className="col-md-9 h-100">{props.children}</div>
           </div>
-          <div className="col-7">
-            <main>{props.children}</main>
+        </div>
+      </main>
+      <BottomBar />
+      <Footer />
+
+      {/* TOPUP MODAL */}
+      <div
+        className="modal fade"
+        id="topupModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="topupModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div
+            className="modal-content px-3 py-2"
+            style={{ borderRadius: "20px" }}
+          >
+            <div className="modal-header border-0">
+              <h5 className="modal-title fw-bold" id="topupModalLabel">
+                Top Up
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form onSubmit={handleTopupSubmit}>
+              <div className="modal-body">
+                <p className="opacity-75">
+                  Enter the amount of money, and click submit
+                </p>
+                <input
+                  type="number"
+                  className="form-control w-50 mx-auto text-center px-0 fw-bold fs-5"
+                  min={1000}
+                  max={10000000}
+                  onChange={handleChangeTopupForm}
+                  value={formTopup.amount}
+                  placeholder="0"
+                  required
+                />
+              </div>
+              <div className="modal-footer border-0">
+                <button
+                  type="submit"
+                  className="btn btn-primary px-4 flex-grow-1 flex-md-grow-0"
+                  disabled={!formTopup.amount}
+                  // data-bs-dismiss="modal"
+                >
+                  {isLoading ? (
+                    <div
+                      className="spinner-border spinner-border-sm text-white"
+                      role="status"
+                    >
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  ) : (
+                    "Submit"
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

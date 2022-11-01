@@ -14,7 +14,7 @@ export default function HistoryCard(props) {
       <div className="col-6 ">
         <div className="row  ">
           <div className={path === "/dashboard" ? "col-4" : "col-4 col-md-2"}>
-            <div className="rounded" style={{ width: "48px", height: "48px" }}>
+            <div className="rounded">
               <Image
                 src={
                   image ? process.env.URL_CLOUDINARY + image : "/profile.jpg"

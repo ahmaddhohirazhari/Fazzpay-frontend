@@ -14,7 +14,7 @@ export default function Header(props) {
 
   return (
     <>
-      <div className="container-fluid bg-white rounded-bottom shadow py-2 fixed-top">
+      <div className="container-fluid bg-white  shadow py-2 fixed-top">
         <div className="container-lg d-flex justify-content-between align-items-center position-relative">
           <h1 className="h3 fw-bold text-primary m-0 d-none d-md-block">
             FazzPay

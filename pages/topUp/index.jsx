@@ -44,7 +44,6 @@ export default function Topup() {
                 <button
                   type="submit"
                   className="btn btn-primary px-4 flex-grow-1 flex-md-grow-0"
-                  disabled={!isAllFormFilled}
                 >
                   {isLoading ? (
                     <div

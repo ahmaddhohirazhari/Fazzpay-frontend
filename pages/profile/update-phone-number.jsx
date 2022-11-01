@@ -54,14 +54,7 @@ export default function UpdatePhoneNumber() {
 
   return (
     <Layout title={`${noTelp ? "Update" : "Add"} Phone Number `}>
-      <div
-        className="bg-white shadow p-4 h-100 d-flex flex-column"
-        style={{
-          marginTop: "100px",
-          borderRadius: "25px",
-          marginLeft: "-100px",
-        }}
-      >
+      <div className="bg-white shadow p-4 h-100 d-flex flex-column">
         <div className="d-flex align-items-center mb-3">
           <button className="btn px-1 py-0 me-2" onClick={() => router.back()}>
             <i className="bi bi-chevron-left"></i>
