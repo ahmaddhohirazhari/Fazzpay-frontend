@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../../layout/banner";
 import axios from "../../utils/axios";
-import PinInput from "../../components/PinInput";
+import PinInput from "../../components/pinInput";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
