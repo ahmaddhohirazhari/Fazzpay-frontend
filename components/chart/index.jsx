@@ -3,8 +3,6 @@ import { Line } from "react-chartjs-2";
 import chart from "chart.js/auto";
 
 export default function HandleChart(props) {
-  //   console.log(props.dataDashboard.data[0].listIncome);
-
   const data = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
@@ -14,7 +12,6 @@ export default function HandleChart(props) {
         backgroundColor: "#1EC15F",
         borderColor: "#1EC15F",
         data: props.dataDashboard.listIncome.map((item) => item.total),
-        // yAxisID: "y-axis-1",
       },
       {
         label: "# of Expense",
@@ -22,7 +19,6 @@ export default function HandleChart(props) {
         backgroundColor: "#FF5B37",
         borderColor: "#FF5B37",
         data: props.dataDashboard.listExpense.map((item) => item.total),
-        // yAxisID: "y-axis-2",
       },
     ],
   };
