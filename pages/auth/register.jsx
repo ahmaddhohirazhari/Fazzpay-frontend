@@ -147,7 +147,7 @@ export default function SignUp() {
           <ToastContainer />
         </button>
         <p className="text-center m-0">
-          Already have an account? Let's{" "}
+          Already have an account? {"L'ets "}
           <Link href="/login">
             <a className="text-primary fw-bold">Login</a>
           </Link>
