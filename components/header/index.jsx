@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import imageDefault from "../../public/profile.jpg";
-// import NotifCard from "../NotifCard";
+import NotifCard from "../notification";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 export default function Header(props) {
-  const router = useRouter();
+  const notif = props.notif;
+  console.log(notif);
 
   const userData = useSelector((state) => state.user.data);
-  // const historyNotif = useSelector((state) => state.historyNotif.data);
+
   const { firstName, lastName, noTelp, image } = userData;
 
   return (
@@ -59,8 +60,8 @@ export default function Header(props) {
           {props.isNotifShown ? (
             <div className="notif-modal bg-light rounded shadow-lg p-4 position-absolute">
               <div className="scrollable-wrapper overflow-auto h-100">
-                {historyNotif.map((notif, index) => (
-                  <div key={index}>{/* <NotifCard notif={notif} /> */}</div>
+                {notif.map((notif, index) => (
+                  <div key={index}>{<NotifCard notif={notif} />}</div>
                 ))}
               </div>
             </div>

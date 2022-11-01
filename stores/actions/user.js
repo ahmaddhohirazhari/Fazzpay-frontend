@@ -1,4 +1,3 @@
-import data from "stores";
 import axios from "../../utils/axios";
 
 export const getDataUserById = (id) => {
@@ -7,15 +6,6 @@ export const getDataUserById = (id) => {
     payload: axios.get(`/user/profile/${id}`),
   };
 };
-
-// export const getDataUser = (page, limit, typeJob, skills, sortSkill) => {
-//   return {
-//     type: "GET_DATA_USER",
-//     payload: axios.get(
-//       `user/getalluser?page=${page}&limit=${limit}&typeJob=${typeJob}&skills=${skills}&sortSkill=${sortSkill}`
-//     ),
-//   };
-// };
 
 export const updateDataUser = (userId, data) => {
   return {
@@ -40,7 +30,7 @@ export const getDataDashboard = (userId) => {
 export const History = (data) => {
   return {
     type: "SET_HISTORY_NOTIF",
-    data: data,
+    data: axios.get("/transaction/history?page=1&limit=5&filter=MONTH", data),
   };
 };
 export const checkPin = (pin) => {

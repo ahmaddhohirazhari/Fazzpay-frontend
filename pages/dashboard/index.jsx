@@ -6,13 +6,11 @@ import HistoryCard from "../../components/historyCard";
 import { useDispatch, useSelector } from "react-redux";
 import currency from "../../utils/currency";
 import { getDataUserById } from "stores/actions/user";
-import { History } from "stores/actions/user";
 import { useRouter } from "next/router";
 import cookies from "next-cookies";
 import Cookies from "js-cookie";
 import axiosServer from "../../utils/axiosServer";
 import axiosClient from "../../utils/axios";
-import Modal from "../../components/ModalTopUp";
 
 import { Bar } from "react-chartjs-2";
 
@@ -21,6 +19,7 @@ import Chart from "chart.js/auto";
 export async function getServerSideProps(context) {
   try {
     const dataCookies = cookies(context);
+
     const historyDashboard = await axiosServer.get(
       `/transaction/history?page=1&limit=4`,
       {
@@ -37,6 +36,7 @@ export async function getServerSideProps(context) {
         },
       }
     );
+
     return {
       props: {
         historyDashboard: historyDashboard.data.data,
@@ -48,7 +48,7 @@ export async function getServerSideProps(context) {
       redirect: {
         destination:
           error.response?.status === 403
-            ? "/auth/login"
+            ? "/"
             : `/error?msg=${error.response?.data.msg}`,
         permanent: false,
       },
@@ -61,23 +61,20 @@ export default function Dashboard(props) {
   const dispatch = useDispatch();
 
   const userData = useSelector((state) => state.user.data);
-  console.log(userData);
+
   const histories = props.historyDashboard;
+  console.log(histories);
+
   const [dashboardData, setDashboardData] = useState({});
   const userId = Cookies.get("userId");
 
   useEffect(() => {
     getUserById();
     getDashboardData();
-    // setHistoryNotif();
   }, []);
 
   const getUserById = async () => {
     await dispatch(getDataUserById(userId));
-  };
-
-  const setHistoryNotif = () => {
-    dispatch(History(props.history));
   };
 
   const getDashboardData = async () => {
@@ -133,7 +130,7 @@ export default function Dashboard(props) {
   };
 
   return (
-    <Layout title={"Dashboard"}>
+    <Layout histories={histories} title={"Dashboard"}>
       <div className="row balance-row" style={{ height: "29%" }}>
         <div className="col-12 h-100">
           <div

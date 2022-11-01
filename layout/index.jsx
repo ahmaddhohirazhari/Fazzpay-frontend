@@ -14,7 +14,8 @@ export default function Layout(props) {
   const dispatch = useDispatch();
   const userId = Cookies.get("userId");
   const router = useRouter();
-
+  const notif = props.histories;
+  console.log(props.histories);
   const [isLoading, setIsLoading] = useState(false);
   const [isNotifShown, setIsNotifShown] = useState(false);
   const [formTopup, setFormTopup] = useState({
@@ -45,7 +46,11 @@ export default function Layout(props) {
       <Head>
         <title>{props.title}</title>
       </Head>
-      <Header isNotifShown={isNotifShown} setIsNotifShown={setIsNotifShown} />
+      <Header
+        isNotifShown={isNotifShown}
+        setIsNotifShown={setIsNotifShown}
+        notif={notif}
+      />
       <main
         className={router.pathname === "/dashboard" ? "main-dashboard" : "main"}
         onClick={() => setIsNotifShown(false)}

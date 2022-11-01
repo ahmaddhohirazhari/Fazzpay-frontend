@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import defaultImage from "../../public/profile.jpg";
 import Layout from "../../layout";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -124,7 +125,7 @@ export default function Profile() {
           style={{ width: "56px", height: "56px", borderRadius: "10px" }}
         >
           <Image
-            src={image ? process.env.URL_CLOUDINARY + image : blankProfile}
+            src={image ? process.env.URL_CLOUDINARY + image : defaultImage}
             alt="profile picture"
             width={56}
             height={56}
@@ -192,7 +193,7 @@ export default function Profile() {
                         ? preview
                         : image
                         ? process.env.URL_CLOUDINARY + image
-                        : blankProfile
+                        : defaultImage
                     }
                     alt="profile image preview"
                     width={120}

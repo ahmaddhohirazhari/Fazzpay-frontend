@@ -2,6 +2,7 @@ const initialState = {
   data: {},
   allData: {},
   dataDashboard: {},
+  dataHistory: {},
   pageInfo: {},
   isLoading: false,
   isError: false,
@@ -142,7 +143,8 @@ const user = (state = initialState, action) => {
 
     case "SET_HISTORY_NOTIF": {
       return {
-        data: action.data,
+        ...state,
+        dataHistory: action.payload.data.data,
       };
     }
 
