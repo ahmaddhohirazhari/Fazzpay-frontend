@@ -24,15 +24,10 @@ export const updateUserImage = (userId, data) => {
 export const getDataDashboard = (userId) => {
   return {
     type: "GET_DATA_DASHBOARD_BY_ID",
-    data: axios.get(`/dashboard/${userId}`),
+    payload: axios.get(`/dashboard/${userId}`),
   };
 };
-export const History = (data) => {
-  return {
-    type: "SET_HISTORY_NOTIF",
-    data: axios.get("/transaction/history?page=1&limit=5&filter=MONTH", data),
-  };
-};
+
 export const checkPin = (pin) => {
   return {
     type: "CHECK_PIN",

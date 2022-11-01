@@ -5,8 +5,8 @@ export default function Notification(props) {
   const notif = props.notif;
 
   return (
-    <div className="bg-white rounded shadow px-3 py-2 mb-2 d-flex justify-content-between align-items-center">
-      <div className="d-flex">
+    <div className="bg-white rounded  shadow px-3 py-2 mb-2 d-flex justify-content-between align-items-center">
+      <div className="d-flex ">
         <div className="me-3 d-flex justify-content-center align-items-center">
           {notif.status === "pending" ? (
             <i className="bi bi-hourglass-split text-black-50 fs-4"></i>

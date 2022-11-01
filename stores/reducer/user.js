@@ -2,7 +2,6 @@ const initialState = {
   data: {},
   allData: {},
   dataDashboard: {},
-  dataHistory: {},
   pageInfo: {},
   isLoading: false,
   isError: false,
@@ -55,7 +54,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         data: action.payload.data.data,
-        message: action.payload.data.message,
+        message: action.payload.data.msg,
       };
 
     case "GET_DATA_USER_BY_ID_REJECTED":
@@ -140,13 +139,6 @@ const user = (state = initialState, action) => {
         isError: true,
         message: action.payload.response.data.msg,
       };
-
-    case "SET_HISTORY_NOTIF": {
-      return {
-        ...state,
-        dataHistory: action.payload.data.data,
-      };
-    }
 
     case "CHECK_PIN_PENDING":
       return { ...state, data: {} };

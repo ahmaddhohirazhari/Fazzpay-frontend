@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
 
 export default function Transfer(props) {
   const router = useRouter();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const users = props.data;
   const pagination = props.pagination;

@@ -5,6 +5,7 @@ import cookies from "next-cookies";
 import axiosServer from "../../utils/axiosServer";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export async function getServerSideProps(context) {
   try {
@@ -45,6 +46,8 @@ export default function History(props) {
   const histories = props.data;
   const pagination = props.pagination;
   const filter = props.filter;
+  const history = useSelector((state) => state.user);
+  console.log(history);
 
   const handleChangeFilter = (e) => {
     pagination.page = 1;

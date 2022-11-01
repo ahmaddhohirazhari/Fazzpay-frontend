@@ -11,6 +11,7 @@ import cookies from "next-cookies";
 import Cookies from "js-cookie";
 import axiosServer from "../../utils/axiosServer";
 import axiosClient from "../../utils/axios";
+import { History } from "stores/actions/history";
 
 import { Bar } from "react-chartjs-2";
 
@@ -61,9 +62,17 @@ export default function Dashboard(props) {
   const dispatch = useDispatch();
 
   const userData = useSelector((state) => state.user.data);
+  const history = useSelector((state) => state.history);
+  console.log(history);
+  useEffect(() => {
+    getDataHistory();
+  }, []);
 
+  const getDataHistory = async () => {
+    dispatch(History(1, "WEEK"));
+  };
+  // const dataHistories = useSelector((state) => state.user.dataHistory);
   const histories = props.historyDashboard;
-  console.log(histories);
 
   const [dashboardData, setDashboardData] = useState({});
   const userId = Cookies.get("userId");

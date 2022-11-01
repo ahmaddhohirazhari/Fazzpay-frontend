@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import imageDefault from "../../public/profile.jpg";
 import NotifCard from "../notification";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { History } from "stores/actions/history";
 
 export default function Header(props) {
-  const notif = props.notif;
-  console.log(notif);
-
+  const dispatch = useDispatch();
+  const [data, setData] = useState();
   const userData = useSelector((state) => state.user.data);
 
+  useEffect(() => {
+    getDataHistory();
+  }, []);
+
+  const getDataHistory = () => {
+    dispatch(History())
+      .then((response) => setData(response.value.data.data))
+      .catch((error) => console.log(error.response));
+  };
+  const notif = data;
   const { firstName, lastName, noTelp, image } = userData;
 
   return (
@@ -58,8 +67,8 @@ export default function Header(props) {
             </div>
           </div>
           {props.isNotifShown ? (
-            <div className="notif-modal bg-light rounded shadow-lg p-4 position-absolute">
-              <div className="scrollable-wrapper overflow-auto h-100">
+            <div className="notif-modal bg-light rounded shadow-lg p-3 position-absolute">
+              <div className="scrollable-wrapper overflow-auto h-150">
                 {notif.map((notif, index) => (
                   <div key={index}>{<NotifCard notif={notif} />}</div>
                 ))}
