@@ -122,7 +122,7 @@ export default function Login() {
           <ToastContainer />
         </button>
         <p className="text-center m-0">
-          Don't have an account? Let's{" "}
+          {"  Don't have an account? Let's"}
           <Link href="/register">
             <a className="text-primary fw-bold">Sign Up</a>
           </Link>
