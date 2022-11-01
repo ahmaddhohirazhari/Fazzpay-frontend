@@ -54,7 +54,7 @@ export default function ResetPassword() {
       <div className="w-100 auth-form">
         <div className="d-none d-md-block">
           <h2 className="h4 fw-bold mb-2">
-            Did You Forgot Your Password? Don't Worry, You Can Reset Your
+            Did You Forgot Your Password? Dont Worry, You Can Reset Your
             Password In a Minutes.
           </h2>
           <p className="opacity-75 mb-4">

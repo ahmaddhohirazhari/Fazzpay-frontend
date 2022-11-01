@@ -51,7 +51,7 @@ export default function createPIN() {
             </h2>
             <p className="opacity-75 mb-5">
               Create 6 digits pin to secure all your money and your data in
-              FazzPay app. Keep it secret and don't tell anyone about your
+              FazzPay app. Keep it secret and dont tell anyone about your
               FazzPay account password and the PIN.
             </p>
           </div>
