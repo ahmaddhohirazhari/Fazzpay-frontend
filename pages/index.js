@@ -121,7 +121,7 @@ export default function Home() {
             </button>
             <button
               className="btn btn-light text-primary px-3"
-              onClick={() => router.push("/register")}
+              onClick={() => router.push("auth/register")}
             >
               Sign Up
             </button>
